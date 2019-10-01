@@ -70,7 +70,7 @@
         { "${XMESSAGE[@]}" <<<"  Usage: stream-to-kodi.sh filename"; exit 1; }
       read -r -p 'Filename: ' FILE
       [[ ! -f $FILE ]] && 
-        { echo file $FILE doesn't exist"; exit 1; }
+        { echo "file $FILE doesn't exist"; exit 1; }
     fi
   else
     echo "Stream: $FILE"
