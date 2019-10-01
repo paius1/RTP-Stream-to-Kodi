@@ -35,7 +35,7 @@
 #  c pl groves gmail 2019
 
 # default kodi 
-  KODI_HOST='pi4B'
+  KODI_HOST='192.168.0.xx'
   KODI_PORT='8080'
   KODI_USER='kodi'
   KODI_PASS=''
@@ -46,7 +46,7 @@
     FILE=$1
  else
   # Called from .desktop
-  # Using 'TryExec=yad' in the .desktop file eliminate menu listing
+  # Using 'TryExec=yad' in the .desktop file eliminates menu listing
   # if we are uning pcmanfm it sends %XX for spaces, etc
     FILE=$(printf "%b\n" "${1//%/\\x}") 
        XMESSAGE=(xmessage  -center -title "Stream to Kodi" -geometry 600x80 -file -)
@@ -70,10 +70,10 @@
         { "${XMESSAGE[@]}" <<<"  Usage: stream-to-kodi.sh filename"; exit 1; }
       read -r -p 'Filename: ' FILE
       [[ ! -f $FILE ]] && 
-        { "${XMESSAGE[@]}" <<<"  File doesn't exist"; exit 1; }
+        { echo file $FILE doesn't exist"; exit 1; }
     fi
   else
-    echo "File to stream $FILE"
+    echo "Stream: $FILE"
   fi
 
 # if multiple kodi players
@@ -181,5 +181,4 @@ echo CTRL C to exit
       sleep 1
       printf "%s\r" "$(TZ=UTC date --date now-"$now" +%H:%M:%S)"
     done
- _notification "Stream stopped ... Exiting"
   echo -e "\nStream stopped ... "
